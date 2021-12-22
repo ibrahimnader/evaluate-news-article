@@ -5,7 +5,7 @@ var bodyParser = require('body-parser')
 var cors = require('cors');
 require('dotenv').config();
 const fetch = require('node-fetch')
-const mockAPIResponse = require('./mockAPI.js')
+const mockAPIResponse = require('./mockAPI.js');
 
 const PORT = 8081
 
@@ -37,9 +37,11 @@ app.post('/api', async function(req, res) {
     res.send(data)
 
 })
+if(process.env.NODE_ENV !=='test'){
 
-app.listen(PORT, (error) => {
-    if (error) throw new Error(error)
-    console.log(`Server listening on port ${PORT}!`)
-})
+    app.listen(PORT, (error) => {
+        if (error) throw new Error(error)
+        console.log(`Server listening on port ${PORT}!`)
+    })
+}
 module.exports = app;
